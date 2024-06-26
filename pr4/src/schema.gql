@@ -1,0 +1,85 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Tutorado {
+  id: ID!
+  identificacion: String!
+  nombre: String
+  tutoria: [Tutoria!]
+  estado: String!
+}
+
+type Tutoria {
+  id: ID!
+  asignatura: String!
+  fecha: String!
+  hora: String!
+  tutor: Tutor!
+  tutorado: Tutorado!
+  estado: String!
+}
+
+type Tutor {
+  id: ID!
+  identificacion: Int!
+  nombre: String
+  experticia: String
+  tutoria: [Tutoria!]
+  estado: String!
+}
+
+type Query {
+  tutors(estado: String): [Tutor!]!
+  tutor(id: Float!): Tutor!
+  tutorados(estado: String): [Tutorado!]!
+  tutorado(id: Float!): Tutorado!
+  tutorias: [Tutoria!]!
+  tutoria(id: Int!): Tutoria!
+}
+
+type Mutation {
+  createTutor(createTutorInput: CreateTutorInput!): Tutor!
+  updateTutor(updateTutorInput: UpdateTutorInput!): Tutor!
+  removeTutor(id: Float!): Tutor!
+  createTutorado(createTutoradoInput: CreateTutoradoInput!): Tutorado!
+  updateTutorado(updateTutoradoInput: UpdateTutoradoInput!): Tutorado!
+  removeTutorado(id: Float!): Tutorado!
+  createTutoria(createTutoriaInput: CreateTutoriaInput!): Tutoria!
+  updateTutoria(updateTutoriaInput: UpdateTutoriaInput!): Tutoria!
+  removeTutoria(id: Int!): Tutoria!
+}
+
+input CreateTutorInput {
+  identificacion: Int!
+  nombre: String
+  experticia: String
+  estado: String! = "Activo"
+}
+
+input UpdateTutorInput {
+  id: ID!
+}
+
+input CreateTutoradoInput {
+  identificacion: String!
+  nombre: String
+  estado: String! = "Activo"
+}
+
+input UpdateTutoradoInput {
+  id: ID!
+}
+
+input CreateTutoriaInput {
+  asignatura: String!
+  fecha: String!
+  hora: String!
+  tutorID: Int!
+  tutoradoID: Int!
+  estado: String! = "Activo"
+}
+
+input UpdateTutoriaInput {
+  id: ID!
+}
